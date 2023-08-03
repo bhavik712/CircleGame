@@ -14,7 +14,7 @@
                 <h1>Welcome to Circle Game {{ name }}.</h1>
             </div>
 
-            <div v-show = "name.length !== 0" class="game-box">
+            <div class="game-box">
                 <div class="play-area">
                     <label>Select BackGround Color of the Circle</label>
                     <select v-model="circleColor">
@@ -51,13 +51,25 @@
                     <input type="range" min="-180" max="180" v-model="degree"><br>
 
                     <label>Show Border</label>
-                    <input type="checkbox" v-model="isBordered">
+                    <input type="checkbox" v-model="isBordered"><br>
+
+                    <button @click.prevent="resetProperties">Reset</button>
+                    <button @click.prevent="copyStyle">Copy</button>
 
 
                 </div>
-                <div class="circle" :style="[selectedCircleColor, selectedTextColor ,circleSize,selectedFontSize,rotationDegree]"
+                <div class="circle" :style="circleStyle"
                     :class="borderClass">
                     {{ name }}
+                </div>
+                <div class="show-css">
+                    <ul>
+                        <li v-for="property in properties">
+                            {{  property  }}
+                        </li>
+                        <li>{{ borderProperty }}</li>
+                    </ul>
+                    
                 </div>
             </div>
 
