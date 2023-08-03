@@ -12,52 +12,64 @@
             </div>
             <div v-else>
                 <h1>Welcome to Circle Game {{ name }}.</h1>
-            </div>
 
-            <div v-show = "name.length !== 0" class="game-box">
-                <div class="play-area">
-                    <label>Select BackGround Color of the Circle</label>
-                    <select v-model="circleColor">
-                        <option value="greenyellow" selected>Light Green</option>
-                        <option value="red">Red</option>
-                        <option value="blue">Blue</option>
-                        <option value="purple">Purple</option> 
-                        <option value="blue">Blue</option>
-                        <option value="yellow">yellow</option>
-                    </select>
+                <div class="game-box">
+                    <div class="play-area">
+                        <label>Select BackGround Color of the Circle</label>
+                        <select v-model="circleColor">
+                            <option value="greenyellow" selected>Light Green</option>
+                            <option value="red">Red</option>
+                            <option value="blue">Blue</option>
+                            <option value="purple">Purple</option> 
+                            <option value="blue">Blue</option>
+                            <option value="yellow">yellow</option>
+                        </select>
 
-                    <br>
+                        <br>
 
-                    <label>Select colour for the Name inside the circle</label>
-                    <select v-model="textColor">
-                        <option value="black" selected>Black</option>
-                        <option value="red">Red</option>
-                        <option value="blue">Blue</option>
-                        <option value="purple">Purple</option> 
-                        <option value="blue">Blue</option>
-                        <option value="yellow">yellow</option>
-                        <option value="white">White</option>
-                    </select>
+                        <label>Select colour for the Name inside the circle</label>
+                        <select v-model="textColor">
+                            <option value="black" selected>Black</option>
+                            <option value="red">Red</option>
+                            <option value="blue">Blue</option>
+                            <option value="purple">Purple</option> 
+                            <option value="blue">Blue</option>
+                            <option value="yellow">yellow</option>
+                            <option value="white">White</option>
+                        </select>
 
-                    <br>
+                        <br>
 
-                    <label>Size of the Cicle :- {{size}} px</label><br>
-                    <input type="range" min="100" max="500" v-model="size"><br>
+                        <label>Size of the Cicle :- {{size}} px</label><br>
+                        <input type="range" min="100" max="500" v-model="size"><br>
 
-                    <lable>Font Size :- {{fontSize}} px</lable><br>
-                    <input type="range" min="20" max="150" v-model="fontSize"><br>
+                        <lable>Font Size :- {{fontSize}} px</lable><br>
+                        <input type="range" min="20" max="150" v-model="fontSize"><br>
 
-                    <label> Give Rotation Degree :- {{degree}} </label><br>
-                    <input type="range" min="-180" max="180" v-model="degree"><br>
+                        <label> Give Rotation Degree :- {{degree}} </label><br>
+                        <input type="range" min="-180" max="180" v-model="degree"><br>
 
-                    <label>Show Border</label>
-                    <input type="checkbox" v-model="isBordered">
+                        <label>Show Border</label>
+                        <input type="checkbox" v-model="isBordered"><br>
+
+                        <button @click.prevent="resetProperties">Reset</button>
+                        <button @click.prevent="copyStyle">Copy</button>
 
 
-                </div>
-                <div class="circle" :style="[selectedCircleColor, selectedTextColor ,circleSize,selectedFontSize,rotationDegree]"
-                    :class="borderClass">
-                    {{ name }}
+                    </div>
+                    <div class="circle" :style="circleStyle"
+                        :class="borderClass">
+                        {{ name }}
+                    </div>
+                    <div class="show-css">
+                        <ul>
+                            <li v-for="property in properties">
+                                {{  property  }}
+                            </li>
+                            <li>{{ borderProperty }}</li>
+                        </ul>
+                        
+                    </div>
                 </div>
             </div>
 
